@@ -1,20 +1,15 @@
 const router = require('express').Router();
-const { response } = require('express');
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
-// The `/api/products` endpoint
+// be sure to include its associated Category and Tag data
 
-// get all products
 router.get('/', async (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
   try {
-    const productData = await Product.findAll({
-      include: [{ model: Category }, { model: Tag }],
-    })
-    response.status(200).json(productData);
+    const productData = await Product.findAll({ include: [{ model: Category }, { model: Tag }],
+    });
+    res.status(200).json(productData);
   } catch (err) {
-    response.status(500).json(err);
+    res.status(500).json(err);
   }
 });
 
@@ -23,16 +18,16 @@ router.get('/:id', async (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
   try {
-    const productData = await Product.findByPk(request.params.id, {
+    const productData = await Product.findByPk(req.params.id, {
       include: [{ model: Category }, { model: Tag }],
     });
     if(!productData) {
-      response.status(404).json({ message: 'No product with that id'});
+      res.status(404).json({ message: 'No product with that id'});
       return;
     }
-    response.status(200).json(productData);
+    res.status(200).json(productData);
   } catch (err) {
-    response.status(500).json(err);
+    res.status(500).json(err);
   }
 });
 
@@ -75,18 +70,15 @@ router.post('/', async (req, res) => {
 });
 
 // update product infomation
-router.put('/:id', async (req, res) => {
-  // update product data
+router.put('/:id', (req, res) => {
   Product.update(req.body, {
-    where: {
-      id: req.params.id,
-    },
+    where: { id: req.params.id },
   })
-    .then(product => {
+    .then((product) => {
       // find all associated tags from ProductTag
-      return ProductTag.findAll({ where: { product_id: req.params.id } });
+      return ProductTag.findAll({ where: { product_id: req.params.id }});
     })
-    .then((productTags) => {
+      .then((productTags) => {
       // get list of current tag_ids
       const productTagIds = productTags.map(({ tag_id }) => tag_id);
       // create filtered list of new tag_ids
@@ -115,11 +107,12 @@ router.put('/:id', async (req, res) => {
       res.status(400).json(err);
     });
 });
+//updating product but still getting "bad request"
 
 router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
   try {
-    const deletedProducts = await Product.delete({
+    const deletedProducts = await Product.destroy({
       where: { id: req.params.id },
     });
     res.status(200).json({ deletedProducts });
