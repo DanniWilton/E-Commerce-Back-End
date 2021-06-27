@@ -1,3 +1,31 @@
+# E-Commerce Back End
+
+## Description
+
+This E-Commerce App allows the user to create, update, view and delete data in their database using the Insomnia Core application.
+
+## Installation
+
+- Clone the repository
+- Update the .env.EXAMPLE with your own database server details and rename the file to .env
+- Open up your terminal and ensure you are in the correct folder
+- In the terminal enter 'npm install' to install the dependencies 
+- In the terminal enter 'mysql -u root -p' and your MySQL password when prompted
+- In the terminal type 'source db/schema.sql
+- When the database is created type 'quit' into your terminal, this exits out of the MySQL terminal
+- In the terminal type 'npm run seed', this fills the database with the information
+- In the terminal type 'npm start' to start the server
+
+## Usage
+
+Links to how to use the app 
+- Setting up in VS [Code](https://drive.google.com/file/d/17Y546IrfnLRLTyFOoa7KxDrttfOl1HMj/view?usp=sharing)
+- Insomnia [Core](https://drive.google.com/file/d/1d8z8src01JzRIVbSJxAwbTnDtcvKj9tH/view?usp=sharing)
+
+## Github Link
+
+- Link to [Github](https://danniwilton.github.io/E-Commerce-Back-End/)
+
 ## User Story
 
 ```md
