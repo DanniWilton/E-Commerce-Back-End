@@ -18,7 +18,7 @@ This E-Commerce App allows the user to create, update, view and delete data in t
 
 ## Usage
 
-Links to how to use the app 
+Links to how to use the app/ The walk through videos for setting up in VS code and testing in Insomnia Core
 - Setting up in VS [Code](https://drive.google.com/file/d/17Y546IrfnLRLTyFOoa7KxDrttfOl1HMj/view?usp=sharing)
 - Insomnia [Core](https://drive.google.com/file/d/1d8z8src01JzRIVbSJxAwbTnDtcvKj9tH/view?usp=sharing)
 
